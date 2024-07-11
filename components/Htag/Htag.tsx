@@ -1,4 +1,4 @@
-import {HtagProps} from "@/components/Htag/Htag.props";
+import {HtagProps} from "@/components/htag/Htag.props";
 import s from './Htag.module.css';
 import cn from  'classnames';
 
