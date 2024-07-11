@@ -1,6 +1,5 @@
 import {HtagProps} from "@/components/htag/Htag.props";
 import s from './Htag.module.css';
-import cn from  'classnames';
 
 const Htag = ({tag, children}: HtagProps) => {
     switch (tag) {
