@@ -2,7 +2,7 @@ import s from './Paragraph.module.css'
 import {ParagraphProps} from "@/components/paragraph/Paragraph.props";
 import cn from "classnames";
 
-const Paragraph = ({size, children, className = 'm', ...rest}: ParagraphProps) => {
+const Paragraph = ({size = 'm', children, className, ...rest}: ParagraphProps) => {
     return (
         <p className={cn(s.p, className ? className : '',
             {
