@@ -3,10 +3,11 @@ import Button from "@/components/button/Button";
 import Tag from "@/components/tag/Tag";
 import Rating from "@/components/rating/Rating";
 import {useState} from "react";
+import {withLayout} from "@/layout/Layout";
 
 const inter = Inter({subsets: ["latin"]});
 
-export default function Home() {
+function Home() {
     const [rating, setRating] = useState<number>(4);
     return (
         <>
@@ -17,3 +18,5 @@ export default function Home() {
         </>
     )
 }
+
+export default withLayout(Home);
