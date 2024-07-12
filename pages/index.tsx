@@ -1,17 +1,19 @@
-import Head from "next/head";
 import {Inter} from "next/font/google";
-import Htag from "@/components/htag/Htag";
 import Button from "@/components/button/Button";
 import Tag from "@/components/tag/Tag";
+import Rating from "@/components/rating/Rating";
+import {useState} from "react";
 
 const inter = Inter({subsets: ["latin"]});
 
 export default function Home() {
+    const [rating, setRating] = useState<number>(4);
     return (
         <>
             <Button appearance={'primary'} arrow={'right'}>hello</Button>
             <Button appearance={'ghost'} arrow={'right'}>world</Button>
             <Tag size={'s'} color={'gray'}>Графический дизайн</Tag>
+            <Rating rating={rating} isEditable={true} setRating={setRating}/>
         </>
     )
 }
