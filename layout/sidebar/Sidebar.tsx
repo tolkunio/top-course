@@ -1,11 +1,13 @@
 import s from './Sidebar.module.css'
 import {SidebarProps} from "@/layout/sidebar/Sidebar.props";
-import cn from "classnames";
+import Menu from "@/layout/sidebar/menu/Menu";
 
-const Sidebar = ({className, ...props}: SidebarProps) => {
-    return <div className={cn(className,s.sidebar)} {...props}>
-        sidebar
-    </div>
+const Sidebar = ({...props}: SidebarProps) => {
+    return (
+        <div{...props}>
+            <Menu/>
+        </div>
+    )
 };
 
 export default Sidebar;
