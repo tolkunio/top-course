@@ -7,8 +7,8 @@ const Paragraph = ({size = 'm', children, className, ...rest}: ParagraphProps) =
         <p className={cn(s.p, className ? className : '',
             {
                 [s.s]: size == 's',
-                [s.m]: s == 'm',
-                [s.l]: s == 'l'
+                [s.m]: size == 'm',
+                [s.l]: size == 'l'
             })}{...rest}>
             {children}
         </p>

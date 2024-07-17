@@ -4,10 +4,13 @@ import Tag from "@/components/tag/Tag";
 import Rating from "@/components/rating/Rating";
 import {useState} from "react";
 import {withLayout} from "@/layout/Layout";
+import {GetStaticProps} from "next";
+import axios from "axios";
+import {MenuItem} from "@/interfaces/menu.interface";
 
 const inter = Inter({subsets: ["latin"]});
 
-function Home() {
+function Home({menu, firstCategory}: HomeProps) {
     const [rating, setRating] = useState<number>(4);
     return (
         <>
@@ -15,8 +18,29 @@ function Home() {
             <Button appearance={'ghost'} arrow={'right'}>world</Button>
             <Tag size={'s'} color={'gray'}>Графический дизайн</Tag>
             <Rating rating={rating} isEditable={true} setRating={setRating}/>
+            <ul>
+                {menu.map((el) => <li key={el._id.secondCategory}>{el._id.secondCategory}</li>)}
+            </ul>
+
         </>
     )
 }
 
 export default withLayout(Home);
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+    const firstCategory = 0;
+    const {data: menu} = await axios.post<MenuItem[]>(process.env.NEXT_PUBLIC_DOMAIN + '/api/top-page/find', {
+        firstCategory
+    });
+    return {
+        props: {
+            menu,
+            firstCategory
+        }
+    }
+}
+
+interface HomeProps {
+    menu: MenuItem[],
+    firstCategory: number
+}

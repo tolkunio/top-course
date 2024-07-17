@@ -1,11 +1,12 @@
 import s from './Header.module.css'
 import {HeaderProps} from "@/layout/header/Header.props";
+import cn from "classnames";
 
-const Header = ({...props}: HeaderProps) => {
+const Header = ({className,...props}: HeaderProps) => {
     return (
-        <div{...props}>
+        <header className={cn(className,s.header)} {...props}>
             header
-        </div>
+        </header>
     );
 };
 
