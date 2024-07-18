@@ -18,9 +18,7 @@ function Home({menu, firstCategory}: HomeProps) {
             <Button appearance={'ghost'} arrow={'right'}>world</Button>
             <Tag size={'s'} color={'gray'}>Графический дизайн</Tag>
             <Rating rating={rating} isEditable={true} setRating={setRating}/>
-            <ul>
-                {menu.map((el) => <li key={el._id.secondCategory}>{el._id.secondCategory}</li>)}
-            </ul>
+
 
         </>
     )

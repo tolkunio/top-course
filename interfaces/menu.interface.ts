@@ -1,3 +1,6 @@
+import {JSX} from "react";
+import {TopLevelCategory} from "@/interfaces/page.interface";
+
 export interface PageItem {
     alias: string
     title: string
@@ -8,6 +11,13 @@ export interface PageItem {
 export interface MenuItem {
     _id:{
         secondCategory: string
-    }
+    },
+    isOpened?:boolean,
     pages: PageItem[]
+}
+export interface FirstLevelMenuItem{
+    route:string,
+    name:string,
+    icon:JSX.Element,
+    id:TopLevelCategory
 }
