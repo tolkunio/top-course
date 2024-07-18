@@ -6,7 +6,7 @@ import BookIcon from "@/public/icons/book.svg";
 import ProductIcon from "@/public/icons/good.svg";
 
 export const firstLevelMenu: FirstLevelMenuItem[] = [
-    {route: '[type]', name: 'Курсы', icon: <CourseIcon/>, id: TopLevelCategory.Courses},
+    {route: 'courses', name: 'Курсы', icon: <CourseIcon/>, id: TopLevelCategory.Courses},
     {route: 'services', name: 'Сервисы', icon: <ServiceIcon/>, id: TopLevelCategory.Services},
     {route: 'books', name: 'Книги', icon: <BookIcon/>, id: TopLevelCategory.Books},
     {route: 'products', name: 'Товары', icon: <ProductIcon/>, id: TopLevelCategory.Products},

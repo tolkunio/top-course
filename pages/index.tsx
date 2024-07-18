@@ -38,7 +38,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
     }
 }
 
-interface HomeProps {
+export interface HomeProps {
     menu: MenuItem[],
     firstCategory: number
 }
