@@ -56,7 +56,7 @@
     fill: #FC836D;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 900px) {
     .hh {
         grid-template-columns: 1fr;
     }

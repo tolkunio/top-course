@@ -4,6 +4,8 @@ import Tag from "@/components/tag/Tag";
 import s from './TopPageComponent.module.css';
 import HhData from "@/page-components/hhData/HhData";
 import {TopLevelCategory} from "@/interfaces/page.interface";
+import Paragraph from "@/components/paragraph/Paragraph";
+import Advantage from "@/page-components/advantage/Advantage";
 
 const TopPageComponent = ({firstCategory, page, products}: TopPageComponentProps) => {
     return (
@@ -20,10 +22,22 @@ const TopPageComponent = ({firstCategory, page, products}: TopPageComponentProps
                 <Htag tag={'h2'}>Вакансии - {page.category}</Htag>
                 <Tag color={'red'} size={'m'}>hh.ru</Tag>
             </div>
-            {firstCategory == TopLevelCategory.Courses && <HhData {...page.hh}/>}
+            {firstCategory == TopLevelCategory.Courses && page.hh && <HhData {...page.hh}/>}
+            {
+                page.advantages && page.advantages.length > 0 && <div className={s.advantageSection}>
+                    <Htag tag={'h2'}>Преимущества</Htag>
+                    <Advantage advantages={page.advantages}/>
+                </div>
+            }
+            {
+                page.seoText && <div className={s.seo} dangerouslySetInnerHTML={{__html:page.seoText}}/>
+            }
+            <Htag tag={'h2'}>Получаемые навыки</Htag>
+            {
+                page.tags.map(tag=><Tag size={'m'} color={'primary'}>{tag}</Tag>)
+            }
 
         </div>
     );
 };
-
 export default TopPageComponent;
