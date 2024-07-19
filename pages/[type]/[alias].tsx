@@ -1,24 +1,22 @@
 import {withLayout} from "@/layout/Layout";
 import {MenuItem} from "@/interfaces/menu.interface";
 import axios from "axios";
-import {GetStaticProps} from "next";
+import {GetStaticProps, GetStaticPropsContext, GetStaticPaths} from "next";
 import {TopPageModel} from "@/interfaces/page.interface";
-import {GetStaticPropsContext} from "next";
 import {ParsedUrlQuery} from "querystring";
 import {ProductModel} from "@/interfaces/product.interface";
-import {GetStaticPaths} from "next";
 import {firstLevelMenu} from "@/helpers/helpers";
 import {TopLevelCategory} from "@/interfaces/page.interface";
+import TopPageComponent from "@/page-components/topPageComponent/TopPageComponent";
 
-const Course = ({menu, page, products}: CourseProps) => {
-    return (
-        <div>
-            {products && products.length}
-        </div>
-    );
+const TopPage = ({firstCategory, menu, page, products}: TopPageProps) => {
+    return <TopPageComponent firstCategory={firstCategory}
+                             page={page}
+                             products={products}/>
 };
 
-export default withLayout(Course);
+export default withLayout(TopPage);
+
 export const getStaticPaths: GetStaticPaths = async () => {
     let paths: string[] = [];
     for (const m of firstLevelMenu) {
@@ -32,7 +30,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         fallback: true
     }
 }
-export const getStaticProps: GetStaticProps<CourseProps> = async ({params}: GetStaticPropsContext<ParsedUrlQuery>) => {
+export const getStaticProps: GetStaticProps<TopPageProps> = async ({params}: GetStaticPropsContext<ParsedUrlQuery>) => {
     if (!params) {
         return {
             notFound: true
@@ -72,7 +70,7 @@ export const getStaticProps: GetStaticProps<CourseProps> = async ({params}: GetS
 
 }
 
-interface CourseProps {
+interface TopPageProps {
     menu: MenuItem[],
     firstCategory: TopLevelCategory,
     page: TopPageModel,
