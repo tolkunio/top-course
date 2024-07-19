@@ -2,8 +2,9 @@ import s from './HhData.module.css'
 import {HhDataProps} from "@/page-components/hhData/HhData.props";
 import Card from "@/components/card/Card";
 import RateIcon from '../../public/icons/rate.svg';
+import {priceRu} from "@/helpers/helpers";
 
-const HhData = ({count,juniorSalary,middleSalary,seniorSalary}: HhDataProps) => {
+const HhData = ({count, juniorSalary, middleSalary, seniorSalary}: HhDataProps) => {
     return (
         <div className={s.hh}>
             <Card className={s.count}>
@@ -12,8 +13,8 @@ const HhData = ({count,juniorSalary,middleSalary,seniorSalary}: HhDataProps) => 
             </Card>
             <Card className={s.salary}>
                 <div>
-                    <div className={s.salaryTitle}>Начальный</div>
-                    <div className={s.salaryCount}>{juniorSalary}</div>
+                    <div className={s.title}>Начальный</div>
+                    <div className={s.salaryCount}>{priceRu(juniorSalary)}</div>
                     <div className={s.rating}>
                         <RateIcon className={s.ratingFilled}/>
                         <RateIcon/>
@@ -22,7 +23,7 @@ const HhData = ({count,juniorSalary,middleSalary,seniorSalary}: HhDataProps) => 
                 </div>
                 <div>
                     <div className={s.title}>Средний</div>
-                    <div className={s.salaryCount}>{middleSalary}</div>
+                    <div className={s.salaryCount}>{priceRu(middleSalary)}</div>
                     <div className={s.rating}>
                         <RateIcon className={s.ratingFilled}/>
                         <RateIcon className={s.ratingFilled}/>
@@ -30,8 +31,8 @@ const HhData = ({count,juniorSalary,middleSalary,seniorSalary}: HhDataProps) => 
                     </div>
                 </div>
                 <div>
-                    <div className={s.salaryTitle}>Профессионал</div>
-                    <div className={s.salaryCount}>{seniorSalary}</div>
+                    <div className={s.title}>Профессионал</div>
+                    <div className={s.salaryCount}>{priceRu(seniorSalary)}</div>
                     <div className={s.rating}>
                         <RateIcon className={s.ratingFilled}/>
                         <RateIcon className={s.ratingFilled}/>
