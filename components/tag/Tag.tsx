@@ -4,7 +4,7 @@ import cn from "classnames";
 
 const Tag = ({size, children, color, href, className, ...rest}: TagProps) => {
     return (
-        <div className={cn(s.tag, {
+        <div className={cn(s.tag,className??'', {
             [s.s]: size == 's',
             [s.m]: size == 'm',
             [s.primary]: color == 'primary',

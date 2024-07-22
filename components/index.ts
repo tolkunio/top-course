@@ -9,3 +9,4 @@ export * from './input/Input';
 export * from './textArea/TextArea';
 export * from './search/Search';
 export * from './product/Product';
+export * from './divider/Divider';

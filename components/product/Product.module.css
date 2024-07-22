@@ -9,7 +9,6 @@
 .logo {
     grid-column: start / logoend;
     grid-row: 1 /span 2;
-
 }
 
 .title, .tags {
@@ -36,15 +35,77 @@
     grid-column: middle / end;
 }
 
-.advantages {
-
+.hr, .desc, .actions {
+    grid-column: start/end;
 }
+
+.advantages span, .disadvantages span {
+    font-weight: 600;
+}
+
+.advantages {
+    margin-bottom: 14px;
+    border-left: 2px solid var(--green);
+}
+
+.disadvantages, .advantages {
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 400;
+    padding-left: 15px;
+    margin-bottom: 5px;
+}
+
 
 .disadvantages {
+    border-left: 2px solid var(--red);
 
 }
 
-.hr, .desc, .actions {
+.logo img {
+    border-radius: 5px;
+}
 
-    grid-column: start/end;
+.title {
+    font-size: 20px;
+    line-height: 27px;
+    font-weight: 600;
+    align-self: flex-end;
+}
+
+.price, .credit {
+    font-size: 20px;
+    line-height: 27px;
+    font-weight: 400;
+    align-self: flex-end;
+}
+
+.rating {
+    align-self: flex-end;
+}
+
+.priceTitle, .creditTitle, .ratingTitle {
+    font-size: 14px;
+    line-height: 19px;
+    font-weight: 300;
+    align-self: flex-end;
+}
+
+.month {
+    font-size: 14px;
+    line-height: 19px;
+}
+
+.tag {
+    margin-top: 7px;
+}
+
+.desc {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 14px;
+}
+
+.reviewBtn {
+    margin-left: 10px;
 }
