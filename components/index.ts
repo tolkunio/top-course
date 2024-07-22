@@ -5,3 +5,5 @@ export * from './tag/Tag';
 export * from './rating/Rating';
 export * from './card/Card';
 export * from './sort/Sort';
+export * from './input/Input';
+export * from './textArea/TextArea';

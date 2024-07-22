@@ -7,8 +7,8 @@ import {TopLevelCategory} from "@/interfaces/page.interface";
 import Advantage from "@/page-components/advantage/Advantage";
 import Sort from "@/components/sort/Sort";
 import {SortEnum} from "@/components/sort/Sort.props";
-import {sortReducer, SortReducerState} from "@/page-components/topPageComponent/sort.reducer";
-import React, {ReducerState, useReducer} from "react";
+import {sortReducer} from "@/page-components/topPageComponent/sort.reducer";
+import React, {useReducer} from "react";
 
 const TopPageComponent = ({firstCategory, page, products}: TopPageComponentProps) => {
     const initialState = {
