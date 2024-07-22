@@ -5,6 +5,6 @@ import {ButtonHTMLAttributes} from "react";
 export interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
     appearance: 'primary' | 'ghost',
     children: ReactNode,
-    className: string,
+    className?: string,
     arrow?: 'right' | 'down' | 'none'
 }
