@@ -4,3 +4,4 @@ export * from './paragraph/Paragraph';
 export * from './tag/Tag';
 export * from './rating/Rating';
 export * from './card/Card';
+export * from './sort/Sort';

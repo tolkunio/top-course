@@ -4,19 +4,34 @@ import Tag from "@/components/tag/Tag";
 import s from './TopPageComponent.module.css';
 import HhData from "@/page-components/hhData/HhData";
 import {TopLevelCategory} from "@/interfaces/page.interface";
-import Paragraph from "@/components/paragraph/Paragraph";
 import Advantage from "@/page-components/advantage/Advantage";
+import Sort from "@/components/sort/Sort";
+import {SortEnum} from "@/components/sort/Sort.props";
+import {sortReducer, SortReducerState} from "@/page-components/topPageComponent/sort.reducer";
+import React, {ReducerState, useReducer} from "react";
 
 const TopPageComponent = ({firstCategory, page, products}: TopPageComponentProps) => {
+    const initialState = {
+        products: products,
+        sort: SortEnum.Rating,
+    };
+    const [{
+        products: sortedProducts,
+        sort
+    }, dispatchSort] = useReducer(sortReducer, initialState);
+
+    const handleSort = (sort: SortEnum) => {
+        dispatchSort({type: sort});
+    }
     return (
         <div className={s.topPageWrapper}>
             <div className={s.title}>
                 <Htag tag={'h1'}>{page.title}</Htag>
                 {products && <Tag color={'gray'} size={'m'}>{products.length}</Tag>}
-                <span>Сортировка</span>
+                <Sort sort={sort} setSort={handleSort}/>
             </div>
             <div>
-                {products && products.map(p => <div key={p._id}>{p.title}</div>)}
+                {sortedProducts && sortedProducts.map(p => <div key={p._id}>{p.title}</div>)}
             </div>
             <div className={s.secondTitle}>
                 <Htag tag={'h2'}>Вакансии - {page.category}</Htag>
@@ -30,11 +45,11 @@ const TopPageComponent = ({firstCategory, page, products}: TopPageComponentProps
                 </div>
             }
             {
-                page.seoText && <div className={s.seo} dangerouslySetInnerHTML={{__html:page.seoText}}/>
+                page.seoText && <div className={s.seo} dangerouslySetInnerHTML={{__html: page.seoText}}/>
             }
             <Htag tag={'h2'}>Получаемые навыки</Htag>
             {
-                page.tags.map(tag=><Tag size={'m'} color={'primary'}>{tag}</Tag>)
+                page.tags.map(tag => <Tag size={'m'} color={'primary'}>{tag}</Tag>)
             }
 
         </div>
