@@ -4,7 +4,7 @@ import {InputProps} from "@/components/input/Input.props";
 
 const Input = ({children, className, ...rest}: InputProps) => {
     return (
-        <input className={cn(className, s.input)}{...rest}/>
+        <input className={cn(className??'', s.input)}{...rest}/>
     );
 };
 

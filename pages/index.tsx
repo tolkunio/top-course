@@ -4,7 +4,6 @@ import {withLayout} from "@/layout/Layout";
 import {GetStaticProps} from "next";
 import axios from "axios";
 import {MenuItem} from "@/interfaces/menu.interface";
-import TextArea from "@/components/textArea/TextArea";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -12,6 +11,7 @@ function Home({menu, firstCategory}: HomeProps) {
     const [rating, setRating] = useState<number>(4);
     return (
         <>
+
         </>
     )
 }
