@@ -7,12 +7,13 @@ import Tag from "@/components/tag/Tag";
 import Button from "@/components/button/Button";
 import {priceRu} from "@/helpers/helpers";
 import Divider from "@/components/divider/Divider";
+import Image from "next/image";
 
 const Product = ({product, className, ...rest}: ProductProps) => {
     return (
-        <Card className={s.productCard} {...rest}>
+        <Card className={s.product} {...rest}>
             <div className={s.logo}>
-                <img src={product.image} alt={product.title}/>
+                <Image src={product.image} alt={product.title} width={70} height={70}/>
             </div>
             <div className={s.title}>
                 {product.title}
@@ -35,12 +36,17 @@ const Product = ({product, className, ...rest}: ProductProps) => {
             <div className={s.priceTitle}>Цена</div>
             <div className={s.creditTitle}>в кредит</div>
             <div className={s.ratingTitle}>{product.reviewCount} отзывов</div>
-            <Divider/>
             <div className={s.desc}>
                 {product.description}
             </div>
             <div className={s.features}>
-                фичи
+                {product.characteristics.map(c => (
+                    <div key={c.name} className={s.characteristic}>
+                        <span className={s.characteristicName}>{c.name}</span>
+                        <span className={s.characteristicDots}></span>
+                        <span className={s.characteristicValue}>{c.value}</span>
+                    </div>
+                ))}
             </div>
             <div className={s.advBlock}>
                 {
@@ -51,7 +57,6 @@ const Product = ({product, className, ...rest}: ProductProps) => {
                         </div>
                     </div>
                 }
-
                 {
                     product.disadvantages &&
                     <div className={s.disadvantages}>
@@ -62,7 +67,7 @@ const Product = ({product, className, ...rest}: ProductProps) => {
                     </div>
                 }
             </div>
-            <Divider/>
+            <Divider className={cn(s.hr,s.hr2)}/>
             <div className={s.actions}>
                 <Button appearance={'primary'}>Узнать подробнее</Button>
                 <Button appearance={'ghost'} arrow={'right'} className={s.reviewBtn}>Читать отзывы</Button>
