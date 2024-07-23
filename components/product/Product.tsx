@@ -88,10 +88,10 @@ const Product = ({product, className, ...rest}: ProductProps) => {
                 [s.reviewClosed]: !isReviewOpen
             })}>
                 <>
-                    {product.reviews.map(review => <>
-                            <Review key={review._id} review={review}/>
+                    {product.reviews.map(review => <div key={review._id}>
+                            <Review review={review}/>
                             <Divider/>
-                        </>
+                        </div>
                     )}
                     <ReviewForm productId={product._id}/>
                 </>

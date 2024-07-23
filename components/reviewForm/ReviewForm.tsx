@@ -5,17 +5,29 @@ import Rating from "@/components/rating/Rating";
 import TextArea from "@/components/textArea/TextArea";
 import Button from "@/components/button/Button";
 import CloseIcon from '../../public/icons/close.svg'
+import {useForm, Controller} from "react-hook-form";
+import {IReviewForm} from "@/components/reviewForm/ReviewForm.interface";
+
 const ReviewForm = (props: ReviewFormProps) => {
+    const {register, control, handleSubmit} = useForm<IReviewForm>();
+    const onSubmit = (data: IReviewForm) => {
+        console.log(data);
+    }
     return (
-        <>
+        <form onSubmit={handleSubmit(onSubmit)}>
             <div className={s.reviewForm}>
-                <Input placeholder={'Имя'}/>
-                <Input className={s.input} placeholder={'Заголовок отзыва'}/>
+                <Input {...register('name')} placeholder={'Имя'}/>
+                <Input {...register('title')} className={s.input} placeholder={'Заголовок отзыва'}/>
                 <div className={s.rating}>
                     <span>Оценка:</span>
-                    <Rating rating={0}/>
+                    <Controller control={control}
+                                render={({field}) => (
+                                    <Rating isEditable={true} rating={field.value} setRating={field.onChange}/>
+                                )}
+                                name={'rating'}/>
+
                 </div>
-                <TextArea placeholder={'Текст отзыва'} className={s.textarea}/>
+                <TextArea {...register('desc')} placeholder={'Текст отзыва'} className={s.textarea}/>
                 <div className={s.btns}>
                     <Button appearance={'primary'}> Отправить</Button>
                     <span
@@ -31,7 +43,7 @@ const ReviewForm = (props: ReviewFormProps) => {
                 </div>
                 <CloseIcon className={s.close}/>
             </div>
-        </>
+        </form>
 
     );
 };
