@@ -4,7 +4,7 @@ import {TextAreaProps} from "@/components/textArea/TextArea.props";
 
 const TextArea = ({children, className, ...rest}: TextAreaProps) => {
     return (
-        <textarea placeholder={'text'} className={cn(className ? className : '', s.textArea)}{...rest}/>
+        <textarea className={cn(className ? className : '', s.textArea)}{...rest}/>
     );
 };
 
