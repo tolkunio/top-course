@@ -41,6 +41,10 @@
     grid-column: start/end;
 }
 
+.hr2 {
+
+}
+
 .advantages span, .disadvantages span {
     font-weight: 600;
 }
@@ -136,8 +140,22 @@
     font-weight: 500;
 }
 
+.review {
 
-@media screen and(max-width: 990px) {
+}
+
+.reviewOpened {
+    max-height: max-content;
+    padding: 30px;
+}
+
+.reviewClosed {
+    overflow: hidden;
+    max-height: 0;
+    padding: 0;
+}
+
+@media screen and(max-width: 1000px) {
     .product {
         grid-template-columns: 70px 30px 1fr;
         grid-template-areas:
@@ -153,16 +171,20 @@
 			"hr2 hr2 hr2"
 			"actions actions actions";
     }
+
     .price {
         margin-bottom: 10px;
     }
-    .credit{
+
+    .credit {
         margin-bottom: 10px;
     }
-    .rating{
+
+    .rating {
         margin-bottom: 10px;
     }
 }
+
 @media screen and (max-width: 650px) {
     .product {
         grid-template-columns: 1fr;
