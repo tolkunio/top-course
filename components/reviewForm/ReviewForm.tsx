@@ -22,7 +22,9 @@ const ReviewForm = (props: ReviewFormProps) => {
                     <span>Оценка:</span>
                     <Controller control={control}
                                 render={({field}) => (
-                                    <Rating isEditable={true} rating={field.value} setRating={field.onChange}/>
+                                    <Rating isEditable={true} rating={field.value}
+                                            ref={field.ref}
+                                            setRating={field.onChange}/>
                                 )}
                                 name={'rating'}/>
 
