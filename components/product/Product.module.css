@@ -96,6 +96,9 @@
     font-weight: 300;
     align-self: flex-end;
 }
+.ratingTitle a{
+    color: var(--primary);
+}
 
 .month {
     font-size: 14px;

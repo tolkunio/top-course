@@ -8,12 +8,20 @@ import Button from "@/components/button/Button";
 import {priceRu} from "@/helpers/helpers";
 import Divider from "@/components/divider/Divider";
 import Image from "next/image";
-import {useState} from "react";
+import {useState, useRef} from "react";
 import Review from "@/components/review/Review";
 import ReviewForm from "@/components/reviewForm/ReviewForm";
 
 const Product = ({product, className, ...rest}: ProductProps) => {
     const [isReviewOpen, setIsReviewOpen] = useState<boolean>(false);
+    const reviewRef = useRef<HTMLDivElement | null>(null);
+    const scrollToReview=()=>{
+        setIsReviewOpen(true);
+        reviewRef.current?.scrollIntoView({
+            behavior:'smooth' as ScrollBehavior,
+            block:'start' as ScrollLogicalPosition
+        })
+    }
     return (
         <>
             <Card className={s.product} {...rest}>
@@ -40,7 +48,12 @@ const Product = ({product, className, ...rest}: ProductProps) => {
                 </div>
                 <div className={s.priceTitle}>Цена</div>
                 <div className={s.creditTitle}>в кредит</div>
-                <div className={s.ratingTitle}>{product.reviewCount} отзывов</div>
+                <div className={s.ratingTitle}>
+                    <a href={'#ref'} onClick={scrollToReview}>
+                        {product.reviewCount} отзывов
+                    </a>
+
+                </div>
                 <div className={s.desc}>
                     {product.description}
                 </div>
@@ -86,7 +99,7 @@ const Product = ({product, className, ...rest}: ProductProps) => {
             <Card color={'blue'} className={cn(s.review, {
                 [s.reviewOpened]: isReviewOpen,
                 [s.reviewClosed]: !isReviewOpen
-            })}>
+            })} ref={reviewRef}>
                 <>
                     {product.reviews.map(review => <div key={review._id}>
                             <Review review={review}/>
