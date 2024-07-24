@@ -1,3 +1,7 @@
+.textAreaWrapper {
+    position: relative;
+}
+
 .textArea {
     padding: 7px 15px;
     color: var(--black);
@@ -9,4 +13,15 @@
     font-size: 16px;
     line-height: 22px;
     font-family: var(--font-family);
+}
+
+.error {
+    border: 1px solid var(--red);
+}
+
+.errorMsg {
+    position: absolute;
+    left: 0;
+    top:56px;
+    color: var(--red);
 }

@@ -1,11 +1,17 @@
 import s from './TextArea.module.css'
 import cn from "classnames";
 import {TextAreaProps} from "@/components/textArea/TextArea.props";
-import {forwardRef,ForwardedRef} from "react";
+import {forwardRef, ForwardedRef} from "react";
 
-const TextArea = forwardRef(({className, ...rest}: TextAreaProps, ref: ForwardedRef<HTMLTextAreaElement>) => {
+const TextArea = forwardRef(({className,error, ...rest}: TextAreaProps, ref: ForwardedRef<HTMLTextAreaElement>) => {
     return (
-        <textarea className={cn(className ? className : '', s.textArea)} ref={ref} {...rest}/>
+        <div className={s.textAreaWrapper}>
+            <textarea
+                className={cn(className ? className : '', s.textArea,{
+                    [s.error]:error
+                })} ref={ref} {...rest}/>
+            {error && <span className={s.errorMsg}>{error.message}</span>}
+        </div>
     );
 });
 
