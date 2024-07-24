@@ -39,6 +39,19 @@
     right: 20px;
     cursor: pointer;
 }
+.error .close svg{
+    fill: var(--red);
+}
+.success .close svg{
+    fill: var(--green-light);
+}
+.error{
+    background: var(--light-red);
+    padding: 20px;
+    position: relative;
+    border-radius: 5px;
+    margin-top: 20px;
+}
 @media screen and (max-width: 1124px) {
     .reviewForm{
         grid-template-columns:[start] 1fr 1fr [end];

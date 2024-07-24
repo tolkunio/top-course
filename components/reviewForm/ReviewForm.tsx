@@ -8,15 +8,36 @@ import CloseIcon from '../../public/icons/close.svg'
 import {useForm, Controller} from "react-hook-form";
 import {IReviewForm} from "@/components/reviewForm/ReviewForm.interface";
 import {FieldError} from "react-hook-form";
+import axios from "axios";
+import {IReviewSendResponse} from "@/components/reviewForm/ReviewForm.interface";
+import {API} from "@/helpers/api";
+import {useState} from "react";
 
-const ReviewForm = (props: ReviewFormProps) => {
-    const {register, control, handleSubmit, formState: {errors}} = useForm();
-    const onSubmit = (data: IReviewForm) => {
-        console.log(data);
+const ReviewForm = ({productId, className, ...rest}: ReviewFormProps) => {
+    const {register, control, handleSubmit, formState: {errors},reset} = useForm();
+    const [isSuccess, setIsSuccess] = useState<boolean>(false);
+    const [error, setError] = useState<string>();
+
+    const onSubmit = async (formData: IReviewForm) => {
+        try {
+            const {data} = await axios.post<IReviewSendResponse>(API.review.createDemo, {
+                ...formData,
+                productId
+            })
+            if (data.message) {
+                setIsSuccess(true);
+                reset();
+            } else {
+                setError('Что-то пошло не так');
+            }
+        } catch (e) {
+            setError(e.message)
+        }
+
     }
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <div className={s.reviewForm}>
+            <div className={s.reviewForm} {...rest}>
                 <Input {...register('name', {required: {value: true, message: 'Заполните имя'}})}
                        placeholder={'Имя'}
                        error={errors.name as FieldError}
@@ -40,10 +61,10 @@ const ReviewForm = (props: ReviewFormProps) => {
                     />
 
                 </div>
-                <TextArea {...register('desc', {required: {value: true, message: 'Заполните текст отзыва'}})}
+                <TextArea {...register('description', {required: {value: true, message: 'Заполните текст отзыва'}})}
                           placeholder={'Текст отзыва'}
                           className={s.textarea}
-                          error={errors.desc as FieldError}
+                          error={errors.description as FieldError}
 
                 />
                 <div className={s.btns}>
@@ -52,15 +73,21 @@ const ReviewForm = (props: ReviewFormProps) => {
                         className={s.info}>* Перед публикацией отзыв пройдет предварительную модерацию и проверку</span>
                 </div>
             </div>
-            <div className={s.success}>
+            {isSuccess && <div className={s.success}>
                 <div className={s.successTitle}>
                     Ваш отзыв отправлен
                 </div>
                 <div>
                     Спасибо, ваш отзыв будет опубликован после проверки
                 </div>
-                <CloseIcon className={s.close}/>
-            </div>
+                <CloseIcon className={s.close} onClick={()=>setIsSuccess(false)}/>
+            </div>}
+            {
+                error && <div className={s.error}>
+                    {error}
+                    <CloseIcon className={s.close} onClick={()=>setError(undefined)}/>
+                </div>
+            }
         </form>
 
     );
