@@ -42,7 +42,7 @@ const Product = ({product, className, ...rest}: ProductProps) => {
                     <Rating rating={product.reviewAvg ?? product.initialRating}/>
                 </div>
                 <div className={s.tags}>
-                    {product.categories.map(category => <Tag className={s.tag} color={'ghost'}>
+                    {product.categories.map(category => <Tag size={'m'} className={s.tag} color={'ghost'}>
                         {category}
                     </Tag>)}
                 </div>
